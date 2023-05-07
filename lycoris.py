@@ -1,7 +1,8 @@
-from typing import *
 import os, sys
 import re
 import glob
+from typing import *
+from pathlib import Path
 
 import torch
 import torch.nn as nn
@@ -9,8 +10,7 @@ import torch.nn.functional as F
 
 from modules import shared, devices, sd_models, errors
 
-now_dir = os.path.dirname(os.path.abspath(__file__))
-lora_path = os.path.join(now_dir, '..', '..', 'extensions-builtin/Lora')
+lora_path = Path(shared.extensions_dir).parent.joinpath('extensions-builtin/Lora')
 sys.path.insert(0, lora_path)
 import lora
 new_lora = 'lora_calc_updown' in dir(lora)
